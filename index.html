@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz - Relais Pour La Vie 2026</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #e53e3e;
+        }
+        button {
+            background-color: #e53e3e;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #c53030;
+        }
+        .instructions {
+            margin: 20px 0;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Quiz - Relais Pour La Vie 2026</h1>
+        <p class="instructions">Cliquez sur le bouton ci-dessous pour ouvrir le quiz au format PDF.</p>
+        <button onclick="openPDF()">Ouvrir le Quiz (PDF)</button>
+    </div>
+
+    <script>
+        function openPDF() {
+            const pdfPath = 'quizz.pdf';
+
+            // Vérifie si le fichier existe
+            fetch(pdfPath)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Fichier PDF introuvable.");
+                    }
+                    return response.blob();
+                })
+                .then(blob => {
+                    const pdfUrl = URL.createObjectURL(blob);
+                    window.open(pdfUrl, '_blank');
+                })
+                .catch(error => {
+                    alert("Une erreur est survenue : " + error.message);
+                });
+        }
+    </script>
+</body>
+</html>
